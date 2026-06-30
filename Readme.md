@@ -1,17 +1,26 @@
-☕ Coffee Website CI/CD Pipeline (DevOps Project)
-🚀 Project Overview
+Here is your **clean, final, professional README.md** for your **single static file CI/CD DevOps project**. You can directly paste this into GitHub.
 
-This is a simple static website deployment project demonstrating a complete CI/CD pipeline using:
+---
 
-GitHub (source code management)
-GitHub Actions (automation)
-AWS EC2 (deployment server)
-Docker (containerization)
-Nginx (web server)
+# ☕ Coffee Website CI/CD Pipeline (DevOps Project)
+
+## 🚀 Project Overview
+
+This is a simple **static website deployment project** demonstrating a complete **CI/CD pipeline** using:
+
+* GitHub (source code management)
+* GitHub Actions (automation)
+* AWS EC2 (deployment server)
+* Docker (containerization)
+* Nginx (web server)
 
 Whenever code is updated and pushed to GitHub, the website is automatically deployed to an EC2 instance using GitHub Actions.
 
-🏗️ Architecture
+---
+
+## 🏗️ Architecture
+
+```id="k7m7y8"
 Developer (Windows)
         ↓
 GitHub (Code Repo)
@@ -23,14 +32,24 @@ AWS EC2 Server
 Docker Container (Nginx)
         ↓
 Live Website 🌐
-⚙️ Tech Stack
-HTML5
-Git & GitHub
-GitHub Actions
-AWS EC2 (Ubuntu)
-Docker
-Nginx
-📁 Project Structure
+```
+
+---
+
+## ⚙️ Tech Stack
+
+* HTML5
+* Git & GitHub
+* GitHub Actions
+* AWS EC2 (Ubuntu)
+* Docker
+* Nginx
+
+---
+
+## 📁 Project Structure
+
+```id="7gq8fs"
 coffee-website/
 │
 ├── index.html
@@ -47,23 +66,43 @@ coffee-website/
     ├── 04-docker-running.png
     ├── 05-live-website.png
     └── 06-github-actions-success.png
-🚀 CI/CD Workflow
-Developer updates website code (Windows)
-Code is pushed to GitHub
-GitHub Actions pipeline is triggered
-EC2 server pulls latest code
-Docker rebuilds the container
-Old container is replaced
-Updated website goes live automatically
-🐳 Docker Setup
-Build Docker Image
+```
+
+---
+
+## 🚀 CI/CD Workflow
+
+1. Developer updates website code (Windows)
+2. Code is pushed to GitHub
+3. GitHub Actions pipeline is triggered
+4. EC2 server pulls latest code
+5. Docker rebuilds the container
+6. Old container is replaced
+7. Updated website goes live automatically
+
+---
+
+## 🐳 Docker Setup
+
+### Build Docker Image
+
+```bash id="c3c7q2"
 docker build -t coffee-site .
-Run Container
+```
+
+### Run Container
+
+```bash id="z0h7qv"
 docker run -d -p 80:80 --name coffee-container coffee-site
-⚙️ GitHub Actions Workflow
+```
 
-This pipeline runs automatically on every push to the main branch:
+---
 
+## ⚙️ GitHub Actions Workflow
+
+This pipeline runs automatically on every push to the `main` branch:
+
+```yaml id="d8k2qz"
 name: Deploy to EC2
 
 on:
@@ -89,56 +128,116 @@ jobs:
             sudo docker rm coffee-container || true
             sudo docker build -t coffee-site .
             sudo docker run -d -p 80:80 --name coffee-container coffee-site
-🌐 How to Run This Project
-1. Clone Repository
+```
+
+---
+
+## 🌐 How to Run This Project
+
+### 1. Clone Repository
+
+```bash id="y1s3v6"
 git clone <repo-url>
 cd coffee-website
-2. Build Docker Image
+```
+
+### 2. Build Docker Image
+
+```bash id="k8m2p1"
 docker build -t coffee-site .
-3. Run Container
+```
+
+### 3. Run Container
+
+```bash id="t5n8q2"
 docker run -d -p 80:80 coffee-site
-4. Open Website
+```
+
+### 4. Open Website
+
+```
 http://<EC2_PUBLIC_IP>
-🧪 CI/CD Test (Important Demo Step)
+```
+
+---
+
+## 🧪 CI/CD Test (Important Demo Step)
 
 To verify pipeline works:
 
-Step 1: Edit index.html
-Step 2: Push changes
+### Step 1: Edit `index.html`
+
+```html id="p2q8x1"
+
+```
+
+### Step 2: Push changes
+
+```bash id="m9k2v8"
 git add .
 git commit -m "Updated homepage"
 git push
-Step 3: Wait 1–2 minutes
-Step 4: Refresh browser
+```
+
+### Step 3: Wait 1–2 minutes
+
+### Step 4: Refresh browser
 
 👉 Website updates automatically (no manual deployment needed)
 
-📸 Screenshots
-1. Project Structure
+---
+
+## 📸 Screenshots
+
+### 1. Project Structure
 
 Shows local files in Windows
 
-2. GitHub Repository
+### 2. GitHub Repository
 
 Shows code uploaded to GitHub
 
-3. EC2 Instance Running
+### 3. EC2 Instance Running
 
 Shows AWS EC2 instance in running state
 
-4. Docker Container Running
+### 4. Docker Container Running
 
 Output of:
 
+```bash
 docker ps
-5. Live Website
+```
+
+### 5. Live Website
 
 Browser showing deployed website
 
-6. GitHub Actions Success
+### 6. GitHub Actions Success
 
 Green tick showing successful pipeline execution
 
+---
 
+## 🎯 Key Learning Outcomes
+
+* CI/CD pipeline automation using GitHub Actions
+* Docker containerization of static website
+* AWS EC2 deployment and management
+* Real-world DevOps workflow understanding
+* Automated deployment without manual intervention
+
+---
+
+## 🔥 Future Improvements
+
+* Add domain name + HTTPS (SSL)
+* Use Docker Compose
+* Implement rollback strategy
+* Deploy using Kubernetes
+* Add Terraform for infrastructure automation
+
+---
 
 DevOps Learning Project — CI/CD Pipeline for Static Website Deployment
+
