@@ -1,0 +1,51 @@
+name: Deploy to EC2 (Docker CI/CD)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+
+          script: |
+            set -e
+
+            echo "Navigating to project folder"
+
+            if [ ! -d "coffee-website-cicd" ]; then
+              git clone https://github.com/${{ github.repository }}.git coffee-website-cicd
+            fi
+
+            cd coffee-website-cicd
+
+            echo "Pulling latest changes"
+            git pull origin main
+
+            echo "Stopping old container if exists"
+            docker rm -f coffee-container || true
+
+            echo "Removing old image if exists"
+            docker rmi coffee-site || true
+
+            echo "Building Docker image"
+            docker build -t coffee-site .
+
+            echo "Running new container"
+            docker run -d \
+              --name coffee-container \
+              -p 80:80 \
+              --restart unless-stopped \
+              coffee-site
+
+            echo "Deployment successful"
