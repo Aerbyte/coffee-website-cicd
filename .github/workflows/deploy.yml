@@ -23,14 +23,13 @@ jobs:
 
             echo "Navigating to project folder"
 
-            if [ ! -d "coffee-website-cicd" ]; then
-              git clone https://github.com/${{ github.repository }}.git coffee-website-cicd
+            if [ -d "coffee-website-cicd" ]; then
+              cd coffee-website-cicd
+              git pull origin main
+            else
+              git clone https://github.com/Aerbyte/coffee-website-cicd.git
+              cd coffee-website-cicd
             fi
-
-            cd coffee-website-cicd
-
-            echo "Pulling latest changes"
-            git pull origin main
 
             echo "Stopping old container if exists"
             docker rm -f coffee-container || true
